@@ -26,9 +26,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import db
-    asyncio.run(asyncpg.connect(app.config['DATABASE_CONNECTION_STRING']))
-    # db.init_app(app)
+    from flaskr import db
+    db.init_app(app)
 
     return app
 
+
+if __name__ == '__main__':
+    create_app().run()

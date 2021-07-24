@@ -1,17 +1,29 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Privileges;
 
-CREATE TABLE user (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+CREATE TABLE public.Users (
+	"id" serial NOT NULL,
+	"name" TEXT NOT NULL UNIQUE,
+	"password" TEXT NOT NULL,
+	"privilege_id" int2 NOT NULL,
+	CONSTRAINT "Users_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
 );
 
-CREATE TABLE post (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  author_id INTEGER NOT NULL,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title TEXT NOT NULL,
-  body TEXT NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES user (id)
+
+
+CREATE TABLE public.Privileges (
+	"id" serial NOT NULL,
+	"name" TEXT NOT NULL UNIQUE,
+	CONSTRAINT "Privileges_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
 );
+
+
+
+ALTER TABLE public.Users ADD CONSTRAINT "Users_fk0" FOREIGN KEY ("privilege_id") REFERENCES public.Privileges("id");
+
+
+
