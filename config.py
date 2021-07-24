@@ -1,1 +1,1 @@
-DATABASE_CONNECTION_STRING = "hababa" # connection string for postgres
+DATABASE_CONNECTION_STRING = "postgres://postgres:javhar12@localhost:5432/SomonBet" # connection string for postgres

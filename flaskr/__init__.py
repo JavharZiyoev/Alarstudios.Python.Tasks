@@ -1,5 +1,8 @@
 import os
 
+import asyncpg
+import asyncio
+
 from flask import Flask
 
 
@@ -23,5 +26,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from . import db
+    asyncio.run(asyncpg.connect(app.config['DATABASE_CONNECTION_STRING']))
+    # db.init_app(app)
 
     return app
+
