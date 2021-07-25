@@ -29,8 +29,16 @@ def create_app(test_config=None):
     from flaskr import db
     db.init_app(app)
 
+    from flaskr import auth
+    from flaskr import alist
+
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(alist.bp)
+
     return app
 
 
 if __name__ == '__main__':
     create_app().run()
+
+

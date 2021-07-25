@@ -7,6 +7,7 @@ import asyncpg
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from sqlalchemy.ext.asyncio import create_async_engine
 
 
 async def get_db():
@@ -15,11 +16,11 @@ async def get_db():
     return g.db
 
 
-async def close_db(e=None):
+def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
-        await db.close()
+        asyncio.run(db.close())
 
 
 async def init_db():
