@@ -13,3 +13,6 @@ set FLASK_ENV=development
 
 # Run project
 flask run
+
+# Routes
+http://localhost:5000/sources/list - get sorted array of data collected from sources
