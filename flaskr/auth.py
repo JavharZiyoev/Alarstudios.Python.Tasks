@@ -22,7 +22,7 @@ async def login():
         db = get_db()
         error = None
         user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
+            'SELECT * FROM users WHERE username = ?', (username,)
         ).fetchone()
 
         if user is None:
