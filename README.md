@@ -6,7 +6,9 @@ _1) cd to the directory where requirements.txt is located.
 
 # Setting env
 run this command in command line:
+
 _set FLASK_APP=flaskr
+
 set FLASK_ENV=development
 
 # Run project
