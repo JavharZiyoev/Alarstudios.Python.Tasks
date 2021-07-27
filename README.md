@@ -1,4 +1,18 @@
 # DB scheme : https://app.dbdesigner.net/designer/schema/435975
+# Docker
+``` docker-compose up ```
+
+**_second task_**:
+
+localhost:5000/sources/first
+
+localhost:5000/sources/second
+
+localhost:5000/sources/third
+
+the result:
+localhost:5000/sources/list
+
 # Installing dependencies: 
 _1) cd to the directory where requirements.txt is located.
 2) activate your virtualenv.
