@@ -20,20 +20,46 @@ async def login():
         password = request.form['password']
         db = await get_db()
         error = None
-        user = await db.execute(
-            'SELECT * FROM users WHERE username = ?', (username,)
-        ).fetchone()
-
+        user = await db.fetchrow(
+        'SELECT * FROM users WHERE name = $1', username)
         if user is None:
-            error = 'Incorrect username.'
+            error = 'Неправильное имя пользователя.'
         elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+            error = 'Неправильный пароль.'
 
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return "auth"
 
         flash(error)
 
     return render_template('auth/login.html')
+
+
+@bp.before_app_request
+async def load_logged_in_user():
+    user_id = session.get('user_id')
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = await get_db().fetchrow(
+        'SELECT * FROM users WHERE name = $1', user_id)
+
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view

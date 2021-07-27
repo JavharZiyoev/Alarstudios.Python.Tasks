@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-page">
+  <div class="form">
+    <div class="login">
+      <div class="login-header">
+        <h3>Вход</h3>
+        <p>Пожалуйста, введите свои данные.</p>
+      </div>
+    </div>
+    <form class="login-form" method="POST">
+      <input type="text" name="username" placeholder="имя пользователя" pattern="[a-zA-Z]{5}" required/>
+      <input type="password" name="password" placeholder="пароль" required pattern="^.{4,}"/>
+      <button>Войти</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
