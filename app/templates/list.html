@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
+{% endblock %}
+
+{% block content %}
+<ul class="tilesWrap">
+	<li>
+		<h2>02</h2>
+		<h3>Title 2</h3>
+		<p>
+			When an unknown printer took a galley of type and scrambled it to make
+			a type specimen book. It has survived not only five centuries.
+		</p>
+		<div style="margin: 5px">
+			<button>Read more</button>
+			<button>Read more</button>
+			<button>Read more</button>
+		</div>
+
+	</li>
+</ul>
+{% endblock %}

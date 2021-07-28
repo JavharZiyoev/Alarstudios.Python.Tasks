@@ -31,9 +31,11 @@ def create_app(test_config=None):
 
     from app import auth
     from app import alist
+    from app import users
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(alist.bp)
+    app.register_blueprint(users.bp)
 
     return app
 
